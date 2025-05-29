@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm mặt hàng mới</title>
+    <!-- Thêm link đến Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Thêm mặt hàng mới</h1>
+        <form method="POST" action="/add.html">
+            {% csrf_token %}
+            
+            <!-- Tên mặt hàng -->
+            <div class="form-group">
+                <label for="name">Tên mặt hàng:</label>
+                <input type="text" class="form-control" id="name" name="name" required placeholder="Nhập tên món đồ uống">
+            </div>
+
+            <!-- Đơn giá -->
+            <div class="form-group">
+                <label for="price">Đơn giá:</label>
+                <input type="number" class="form-control" id="price" name="price" step="0.01" required placeholder="Nhập giá món đồ uống">
+            </div>
+
+            <!-- Mô tả -->
+            <div class="form-group">
+                <label for="description">Mô tả:</label>
+                <textarea class="form-control" id="description" name="description" required placeholder="Mô tả món đồ uống"></textarea>
+            </div>
+
+            <!-- URL ảnh -->
+            <div class="form-group">
+                <label for="image_url">URL ảnh (tuỳ chọn):</label>
+                <input type="url" class="form-control" id="image_url" name="image_url" placeholder="Nhập URL ảnh (tuỳ chọn)">
+            </div>
+
+            <!-- Nút submit -->
+            <button type="submit" class="btn btn-primary">Thêm mặt hàng</button>
+        </form>
+    </div>
+
+    <!-- Thêm script Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

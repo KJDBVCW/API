@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RITA</title>
+
+  <!-- Tải các tệp tĩnh -->
+  {% load static %}
+  <link rel="icon" type="image/webp" href="https://rita.com.vn/images/Logo_Rita_Beverage_and_slogan.webp">
+
+  <link rel="stylesheet" href="{% static 'drinks_api/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+
+  <!-- Hero Image -->
+  <section class="hero">
+    <img src="https://rita.com.vn/images/slider/cache/1f69cafed91821f4fa376b42259b6e31/Bubble_Tea_with_tapioca.jpg" alt="Hero Image">
+  </section>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="/">
+        <img src="https://rita.com.vn/images/Logo_Rita_Beverage_and_slogan.webp" alt="Choco Logo" style="height: 50px;">
+      </a>
+    </div>
+    <div class="header-icons">
+      <i class="fa fa-user" onclick="openCartModal()"></i>
+      <!-- Nút mở form thêm món -->
+      <a href="{% url 'add_item' %}">
+        <i class="fas fa-edit"></i> 
+      </a>
+    </div>
+  </header>
+
+  <h1><img src="https://rita.com.vn/images/Logo_Rita_Beverage_and_slogan.webp" alt="Choco Logo" style="height: 50px;"></h1>
+
+  <!-- Product Grid -->
+  <div class="product-grid" id="drink-list">
+    <!-- Các món đồ uống sẽ được hiển thị ở đây thông qua JavaScript -->
+     
+  </div>
+  <div class="image-container">
+    {% for item in items %}
+      <div class="image-card">
+        <img src="{{ item.image_url }}" class="image-style" />
+        <p class="drink-name">{{ item.name }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+
+
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'drinks_api/script.js' %}"></script>
+
+</body>
+</html>

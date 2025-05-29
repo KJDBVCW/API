@@ -1,0 +1,285 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Toàn màn hình */
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giữ tỷ lệ, cắt vừa vặn */
+  display: block;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(255, 255, 255, 0.00); /* Trong suốt */
+  backdrop-filter: blur(8px); /* Hiệu ứng mờ */
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.95); /* Nền rõ hơn khi cuộn */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.login-icon {
+  color: #333;
+  font-size: 24px;
+  cursor: pointer;
+}
+.login-icon:hover {
+  color: #008edb;
+}
+
+h1 {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 32px;
+  color: #000000;
+  margin: 30px 0 20px;
+}
+
+/* Định dạng các input, select cho đặt món */
+#drinkSize, #drinkQty {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.header-icons {
+  display: flex;
+  gap: 25px;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+/* Modal Giỏ Hàng */
+.cart-modal {
+  display: none; /* Ẩn modal mặc định */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.cart-modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 60%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.cart-modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-modal-content table, th, td {
+  border: 1px solid #ddd;
+}
+
+.cart-modal-content th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+.cart-modal-content .close-cart {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.cart-modal-content .close-cart:hover,
+.cart-modal-content .close-cart:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột đều nhau */
+  gap: 20px; /* Khoảng cách giữa các cột */
+  padding: 0 15px; /* Thêm padding để tạo khoảng cách từ lề */
+  width: 100%;
+  max-width: 2000px; /* Giới hạn chiều rộng tối đa của grid */
+  margin: 0 auto; /* Căn giữa grid */
+}
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* responsive grid */
+  gap: 16px;
+  padding: 20px;
+}
+
+.image-style {
+  width: 100%;
+  aspect-ratio: 1 / 1;       /* Đảm bảo khung hình vuông */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-card {
+  height: 280px; /* hoặc auto nếu không muốn cố định */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+
+.drink-name {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+
+/* Thẻ sản phẩm */
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+  width: 100%; /* Quan trọng để chiếm trọn cột */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.image-wrapper img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: unset; /* Không co kéo hay cover */
+}
+
+.product-card:hover .image-wrapper img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Thông tin sản phẩm */
+.product-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-info h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.product-info p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Nút đặt món */
+.order-btn {
+  display: block;
+  margin: 10px auto 15px;
+  padding: 10px 20px;
+  background-color: #0296db;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+/* Hiển thị nút khi hover vào hình ảnh hoặc card sản phẩm */
+.image-wrapper:hover + .product-info + .order-btn,
+.product-card:hover .order-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cột khi màn hình nhỏ */
+    max-width: 800px; /* Giới hạn chiều rộng tối đa của grid khi 2 cột */
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr; /* 1 cột khi màn hình rất nhỏ */
+    max-width: 100%; /* Chiếm toàn bộ chiều rộng */
+  }
+}
+
+.order-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+} 
